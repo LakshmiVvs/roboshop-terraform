@@ -24,7 +24,7 @@ resource "null_resource" "mongodb" {
     host     = aws_instance.mongodb.private_ip
   }
 
-   provisioner "remote-exec" {
+   provisioner "file" {
     source = "bootstrap.sh"
     destination = "/tmp/bootstrap.sh"
    }
