@@ -31,8 +31,8 @@ resource "null_resource" "mongodb" {
 
   provisioner "remote-exec" {
       inline = [
-         "chmod +x "/tmp/bootstrap.sh" ,
-         "sudo sh "/tmp/bootstrap.sh"
+         "chmod +x /tmp/bootstrap.sh" ,
+         "sudo sh /tmp/bootstrap.sh"
     ]
   }
 }
