@@ -26,9 +26,7 @@ resource "null_resource" "mongodb" {
 
   provisioner "remote-exec" {
       inline = [
-      "echo 'Connected successfully to MongoDB via bastion!'",
-      "hostname",
-      "sudo yum install -y mongodb-org"
+      "echo 'Connected successfully to MongoDB via bastion!'"
     ]
   }
 }
