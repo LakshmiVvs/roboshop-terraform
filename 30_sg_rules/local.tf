@@ -9,5 +9,5 @@ locals {
 
     rabbitmq_sg_id = data.aws_ssm_parameter.rabbitmq_sg_id.value
 
-    
+    mysql_sg_id = data.aws_ssm_parameter.mysql_sg_id.value
 }
