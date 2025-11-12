@@ -7,4 +7,6 @@ locals {
         Environment = var.environment
         Terraform = "true"
     }
+
+    common_name_suffix = "roboshop-dev"
 }
