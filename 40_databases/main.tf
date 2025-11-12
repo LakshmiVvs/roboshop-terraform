@@ -1,32 +1,32 @@
 resource "aws_instance" "mongodb" {
-    ami = local.ami_id
-    instance_type = "t3.micro"
-    vpc_security_group_ids = [local.mongodb_sg_id]
-    subnet_id = local.database_subnet_ids
-    
-    tags = merge (
-        local.common_tags,
-        {
-            Name = "${local.common_name_suffix}-mongodb"
-        }
-    )
+  ami                    = local.ami_id
+  instance_type          = "t3.micro"
+  vpc_security_group_ids = [local.mongodb_sg_id]
+  subnet_id              = local.database_subnet_ids[0]
+
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "${local.common_name_suffix}-mongodb"
+    }
+  )
 }
 
-resource "tarraform_data" "mongodb" {
-  trigger_replace = {
-     aws_instance.mongodb.id
+resource "null_resource" "mongodb" {
+  triggers = {
+    instance_id = aws_instance.mongodb.id
   }
 
   connection {
-      type        = "ssh"
-      user        = "ec2-user"
-      password = "DevOps321"
-      host        = aws_instance.mongodb.private_ip
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = aws_instance.mongodb.private_ip
   }
 
-provisioner "remote-exec" {
+  provisioner "remote-exec" {
     inline = [
-       "echo iam mongodb"
+      "echo i am mongodb"
     ]
- }
+  }
 }
