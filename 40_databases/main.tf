@@ -24,15 +24,16 @@ resource "null_resource" "mongodb" {
     host     = aws_instance.mongodb.private_ip
   }
 
-   provisioner "file" {
-    source = "bootstrap.sh"
-    destination = "/tmp/bootstrap.sh"
-   }
+ provisioner "file" {
+  source      = "bootstrap.sh"
+  destination = "/tmp/bootstrap.sh"
+}
 
-  provisioner "remote-exec" {
-      inline = [
-         "chmod +x /tmp/bootstrap.sh" ,
-         "sudo sh /tmp/bootstrap.sh"
-    ]
-  }
+provisioner "remote-exec" {
+  inline = [
+    "chmod +x /tmp/bootstrap.sh",
+    "sudo sh /tmp/bootstrap.sh"
+  ]
+}
+
 }
